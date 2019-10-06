@@ -1,0 +1,127 @@
+***LES PROCESSUS***
+
+Question 1 : y'en a beaucoup c'est un peu long, j'ai réduit la sstructure a quelques variables.
+
+struct task_struct
+{
+	volatile long state; /* -1 unrunnable, 0 runnable, >0 stopped */
+	struct thread_info *thread_info;
+	atomic_t usage;
+	unsigned long flags; /* per process flags, defined below */
+
+#if defined(CONFIG_SMP) && defined(__ARCH_WANT_UNLOCKED_CTXSW)
+	int oncpu;
+#endif
+	int prio, static_prio;
+	struct list_head run_list;
+	prio_array_t *array;
+
+	unsigned short ioprio;
+	unsigned int btrace_seq;
+
+	unsigned long sleep_avg;
+	unsigned long long timestamp, last_ran;
+	unsigned long long sched_time; /* sched_clock time spent running */
+	enum sleep_type sleep_type;
+
+	unsigned long policy;
+	cpumask_t cpus_allowed;
+	unsigned int time_slice, first_time_slice;
+
+#ifdef CONFIG_SCHEDSTATS
+	struct sched_info sched_info;
+#endif
+
+	struct list_head tasks;
+
+	unsigned long rt_priority;
+	cputime_t utime, stime;
+	unsigned long nvcsw, nivcsw; /* context switch counts */
+	struct timespec start_time;
+
+	cputime_t it_prof_expires, it_virt_expires;
+	unsigned long long it_sched_expires;
+	struct list_head cpu_timers[3];
+
+	sigset_t blocked, real_blocked;
+};
+
+
+Question 2 : elles appelent toutes la fonction do_fork()
+
+***ORDONNANCEMENT***
+
+Question 1 : la fonction task_timeslice s'occupe du calcul du temps
+
+/*
+ * task_timeslice() scales user-nice values [ -20 ... 0 ... 19 ]
+ * to time slice values: [800ms ... 100ms ... 5ms]
+ *
+ * The higher a thread's priority, the bigger timeslices
+ * it gets during one round of execution. But even the lowest
+ * priority thread gets MIN_TIMESLICE worth of execution time.
+ */
+
+#define SCALE_PRIO(x, prio) \
+	max(x * (MAX_PRIO - prio) / (MAX_USER_PRIO/2), MIN_TIMESLICE)
+
+static unsigned int task_timeslice(task_t *p)
+{
+	if (p->static_prio < NICE_TO_PRIO(0))
+		return SCALE_PRIO(DEF_TIMESLICE*4, p->static_prio);
+	else
+		return SCALE_PRIO(DEF_TIMESLICE, p->static_prio);
+}
+
+Question 2 : ligne 3033 (switch_tasks:) à 3057 (barrier())
+
+https://elixir.bootlin.com/linux/v2.6.17/source/kernel/sched.c
+
+switch_tasks:
+	if (next == rq->idle)
+		schedstat_inc(rq, sched_goidle);
+	prefetch(next);
+	prefetch_stack(next);
+	clear_tsk_need_resched(prev);
+	rcu_qsctr_inc(task_cpu(prev));
+
+	update_cpu_clock(prev, rq, now);
+
+	prev->sleep_avg -= run_time;
+	if ((long)prev->sleep_avg <= 0)
+		prev->sleep_avg = 0;
+	prev->timestamp = prev->last_ran = now;
+
+	sched_info_switch(prev, next);
+	if (likely(prev != next)) {
+		next->timestamp = now;
+		rq->nr_switches++;
+		rq->curr = next;
+		++*switch_count;
+
+		prepare_task_switch(rq, next);
+		prev = context_switch(rq, prev, next);
+		barrier();
+
+La variable rq est la runqueue du processeur actuel.
+
+La macro prefetch se trouve dans include/asm-i386/processor.h, et
+sert à signifier au processeur de précharger une partie du processus que l’on va
+activer.
+
+La macro clear_tsk_need_resched() se trouve dans
+include/linux/sched.h,
+
+La macro rcu_qsctr_inc() se trouve dans include/linux/rcupdate.h,
+(vous pouvez ignorer celle-ci).
+
+La fonction update_cpu_clock(), sched_info_switch(),
+prepare_task_switch() et context_switch() se trouvent dans le même
+fichier,
+
+la macro likely(condition) équivaut à un if qui indiquerai au compilateur que
+la condition a de forte chance d’être vrai. Unlikely(condition) fait l’inverse.
+Mais les deux effectuent juste un test de type if(condition).
+
+
+

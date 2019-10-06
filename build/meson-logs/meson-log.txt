@@ -1,0 +1,54 @@
+Build started at 2019-10-06T21:27:59.484325
+Main binary: /usr/bin/python
+Python system: Linux
+The Meson build system
+Version: 0.51.2
+Source dir: /home/luisky/cours/M2_LSE/SEE/TP/TP2
+Build dir: /home/luisky/cours/M2_LSE/SEE/TP/TP2/build
+Build type: native build
+Project name: TP2
+Project version: undefined
+No CFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc -pipe -D_FILE_OFFSET_BITS=64 /home/luisky/cours/M2_LSE/SEE/TP/TP2/build/meson-private/sanitycheckc.c -o /home/luisky/cours/M2_LSE/SEE/TP/TP2/build/meson-private/sanitycheckc.exe
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/luisky/cours/M2_LSE/SEE/TP/TP2/build/meson-private/sanitycheckc.exe
+No CFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc -pipe -D_FILE_OFFSET_BITS=64 /home/luisky/cours/M2_LSE/SEE/TP/TP2/build/meson-private/sanitycheckc.c -o /home/luisky/cours/M2_LSE/SEE/TP/TP2/build/meson-private/sanitycheckc.exe
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /home/luisky/cours/M2_LSE/SEE/TP/TP2/build/meson-private/sanitycheckc.exe
+C compiler for the host machine: cc (gcc 9.2.0 "cc (GCC) 9.2.0")
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Build targets in project: 1
+Found ninja-1.9.0 at /usr/bin/ninja
+Running compile:
+Working directory:  /tmp/tmpalm3pxqo
+Command line:  cc /tmp/tmpalm3pxqo/testfile.c -o /tmp/tmpalm3pxqo/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/
+programs: =/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../x86_64-pc-linux-gnu/bin/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../x86_64-pc-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../x86_64-pc-linux-gnu/lib/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../x86_64-pc-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../x86_64-pc-linux-gnu/9.2.0/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../lib/:/lib/x86_64-pc-linux-gnu/9.2.0/:/lib/../lib/:/usr/lib/x86_64-pc-linux-gnu/9.2.0/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../../x86_64-pc-linux-gnu/lib/:/usr/lib/gcc/x86_64-pc-linux-gnu/9.2.0/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 

@@ -1,0 +1,14 @@
+[
+  {
+    "directory": "/home/luisky/cours/M2_LSE/SEE/TP/TP2/build",
+    "command": "cc -Iordo@exe -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -MD -MQ 'ordo@exe/src_main.c.o' -MF 'ordo@exe/src_main.c.o.d' -o 'ordo@exe/src_main.c.o' -c ../src/main.c",
+    "file": "../src/main.c",
+    "output": "ordo@exe/src_main.c.o"
+  },
+  {
+    "directory": "/home/luisky/cours/M2_LSE/SEE/TP/TP2/build",
+    "command": "cc -Iordo@exe -I. -I.. -fdiagnostics-color=always -pipe -D_FILE_OFFSET_BITS=64 -Wall -Winvalid-pch -g -MD -MQ 'ordo@exe/src_ordo.c.o' -MF 'ordo@exe/src_ordo.c.o.d' -o 'ordo@exe/src_ordo.c.o' -c ../src/ordo.c",
+    "file": "../src/ordo.c",
+    "output": "ordo@exe/src_ordo.c.o"
+  }
+]
