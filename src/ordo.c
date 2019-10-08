@@ -50,6 +50,16 @@ void print_affinity(void)
 	printf("\n");
 }
 
+void set_affinity(int cpu_nb)
+{
+	cpu_set_t mask;
+	CPU_ZERO(&mask);
+	CPU_SET(cpu_nb, &mask);
+
+	if (sched_setaffinity(0, sizeof(cpu_set_t), &mask) == -1)
+		errx(EXIT_FAILURE, "sched_setaffinity");
+}
+
 void print_sched_policy(void)
 {
 	int sched_policy = 0;

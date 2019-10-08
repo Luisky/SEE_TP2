@@ -15,5 +15,6 @@ void print_prio(void);
 void set_prio(int prio);
 void change_sched_to_rt(int prio);
 void print_affinity(void);
+void set_affinity(int cpu_nb);
 void print_sched_policy(void);
 void print_rt_prio(void);
