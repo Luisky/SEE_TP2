@@ -2,10 +2,12 @@ project('TP2', 'c')
 
 src = [
     'src/main.c',
-    'src/ordo.h',
-    'src/ordo.c'
+    'lib/ordo.h',
+    'lib/ordo.c'
 ]
 
-ld = '-lrt'
+ld = ['-lrt', '-lm']
 
 executable('ordo', src, link_args : ld)
+executable('ordo_rt', src, link_args : ld, c_args : '-DRT')
+executable('perturbator', 'src/perturbator.c')
