@@ -8,6 +8,8 @@ src = [
 
 ld = ['-lrt', '-lm']
 
-executable('ordo', src, link_args : ld)
-executable('ordo_rt', src, link_args : ld, c_args : '-DRT')
+lib = include_directories('lib')
+
+executable('ordo', src, link_args : ld, include_directories : lib)
+executable('ordo_rt', src, link_args : ld, include_directories : lib, c_args : '-DRT')
 executable('perturbator', 'src/perturbator.c')

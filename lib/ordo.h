@@ -1,3 +1,6 @@
+#ifndef ORDO_H
+#define ORDO_H
+
 #define _GNU_SOURCE /* See feature_test_macros(7) */
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,9 +22,9 @@
 #define SAMPLE 100
 #define DIFFS (SAMPLE - 1)
 
-int     sample_count;
+int	sample_count;
 timer_t timerid; // pour pouvoir arreter le timer dans le handler
-bool    break_while;
+bool	break_while;
 
 struct timespec timings[SAMPLE];
 struct timespec diffs[DIFFS];
@@ -39,3 +42,5 @@ void print_rt_prio(void);
 void create_timer(__syscall_slong_t inter);
 void calculations(void);
 void sample_while(void);
+
+#endif //ORDO_H

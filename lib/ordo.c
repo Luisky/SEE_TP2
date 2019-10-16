@@ -4,7 +4,7 @@ void print_prio(void)
 {
 	int prio_proc = 0;
 
-	errno     = 0;
+	errno	  = 0;
 	prio_proc = getpriority(PRIO_PROCESS, 0);
 
 	if (errno != 0) {
@@ -85,7 +85,7 @@ void print_rt_prio(void)
 
 void create_timer(__syscall_slong_t inter)
 {
-	struct sigevent   sev;
+	struct sigevent	  sev;
 	struct itimerspec its;
 	sample_count = 0;
 
@@ -99,9 +99,9 @@ void create_timer(__syscall_slong_t inter)
 	printf("timerid : %p\n", timerid);
 
 	// start the timer
-	its.it_value.tv_sec     = 0;
-	its.it_value.tv_nsec    = inter;
-	its.it_interval.tv_sec  = its.it_value.tv_sec;
+	its.it_value.tv_sec	= 0;
+	its.it_value.tv_nsec	= inter;
+	its.it_interval.tv_sec	= its.it_value.tv_sec;
 	its.it_interval.tv_nsec = its.it_value.tv_nsec;
 	if (timer_settime(timerid, 0, &its, NULL) == -1)
 		errx(EXIT_FAILURE, "timer_settime");

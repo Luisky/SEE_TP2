@@ -1,4 +1,4 @@
-#include "../lib/ordo.h"
+#include "ordo.h"
 
 static void handler(int sig, siginfo_t *si, void *uc)
 {
@@ -39,7 +39,7 @@ int main(void)
 	// question 4
 	// copied from man page : establish handler for timer signal
 	struct sigaction sa;
-	sa.sa_flags     = SA_SIGINFO;
+	sa.sa_flags	= SA_SIGINFO;
 	sa.sa_sigaction = handler;
 	sigemptyset(&sa.sa_mask);
 	if (sigaction(SIGRTMIN, &sa, NULL) == -1)
