@@ -22,7 +22,7 @@ static void handler(int sig, siginfo_t *si, void *uc)
 int main(void)
 {
 	// questions 1, 2, 3
-	set_affinity(7);
+	set_affinity(0);
 	print_affinity();
 
 	print_prio();
