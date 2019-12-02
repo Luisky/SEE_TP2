@@ -25,11 +25,6 @@ int main(void)
 	set_affinity(0);
 	print_affinity();
 
-	print_prio();
-	//set_prio(-10);
-	//print_prio();
-
-	//TODO: revert this back for question 5
 #ifdef RT
 	change_sched_to_rt(1);
 	print_sched_policy();

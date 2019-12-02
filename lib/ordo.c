@@ -134,7 +134,7 @@ void calculations(void)
 	for (int i = 0; i < DIFFS; ++i)
 		std_dev += pow(diffs[i].tv_nsec - mean, 2);
 	std_dev = sqrt(std_dev / DIFFS);
-	printf("std dev : %ld ns\n", std_dev);
+	printf("std_dev : %ld ns\n", std_dev);
 }
 
 inline void sample_while(void)
