@@ -11,9 +11,9 @@ GCC_CROSS := $(BR_OUTPUT)host/usr/bin/arm-linux-gnueabihf-gcc
 # source and compile only the modules in the PWD (local) directory.
 default:
 	mkdir -p xbuild
-	$(GCC_CROSS) -o xbuild/ordo src/main.c lib/ordo.c lib/ordo.h -lrt -lm -I lib/
-	$(GCC_CROSS) -o xbuild/ordo_rt src/main.c lib/ordo.c lib/ordo.h -lrt -lm -DRT -I lib/
-	$(GCC_CROSS) -o xbuild/perturbator src/perturbator.c
+	$(GCC_CROSS) -o xbuild/ordo 		src/main.c	lib/ordo.c lib/ordo.h -lrt -lm -I lib/
+	$(GCC_CROSS) -o xbuild/ordo_rt 		src/main.c	lib/ordo.c lib/ordo.h -lrt -lm -DRT -I lib/
+	$(GCC_CROSS) -o xbuild/perturbator	src/perturbator.c
 
 .PHONY: clean
 clean:
